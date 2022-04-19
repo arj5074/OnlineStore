@@ -6,6 +6,23 @@ body{
 h1{
     display: inline;
 }
+h2{
+    display: inline;
+}
+
+h5{
+    display: inline;
+}
+
+img{
+    margin: 8px;
+}
+
+
+
+.title {
+    text-align: center;
+}
 
 .itemCard {
     background-color: aquamarine;
@@ -22,5 +39,6 @@ h1{
 }
 
 .container {
+    border: black;
     padding: 2px 16px;
 }

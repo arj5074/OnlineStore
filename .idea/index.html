@@ -9,10 +9,15 @@
 </head>
 <body>
     <script type="text/javascript">
-        var item1 = document.getElementById(" ");
+        var item1 = 'turtle';
+        var itemsInCart = [];
 
+        function addtoCart(value){
+            itemsInCart.push(value);
+            console.log(itemsInCart);
+        }
         function openCheckout(){
-
+            console.log(itemsInCart);
         }
 
         function closeCheckout() {
@@ -30,16 +35,24 @@
 
     </script>
 
-    <div>
-        <h1 style="size: A5">Big Title</h1>
-        <button class="fa fa-shopping-cart fa-2x fa-pull-right"> cart</button>
+    <div class="title">
+        <h1>Big Title</h1>
     </div>
-    <h2>
-        Small Title
-    </h2>
-
-
-
+    <div class="title">
+        <h2>Small Title</h2>
+    </div>
+    <div>
+        <button class="fa fa-pull-right">
+            <i class="fa fa-sign-in fa-2x"> Login</i>
+        </button>
+        <br>
+        <br>
+        <button onclick="openCheckout()" class="fa fa-pull-right">
+            <i class="fa fa-shopping-cart fa-2x"> Cart</i>
+        </button>
+    </div>
+    <br>
+    <br>
 
     <div class="row">
         <section class="itemCard">
@@ -47,6 +60,7 @@
             <div class="container">
                 <h4><b>Blue Circle</b></h4>
                 <h5>$19.99</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
             </div>
         </section>
         <section class="itemCard">
@@ -54,6 +68,7 @@
             <div class="container">
                 <h4><b>Blue Circle</b></h4>
                 <h5>$20.00</h5>
+                <button onclick="addtoCart('seven')">Add to Cart</button>
             </div>
         </section>
         <section class="itemCard">
@@ -61,6 +76,7 @@
             <div class="container">
                 <h4><b>Blue Circle</b></h4>
                 <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
             </div>
         </section>
     </div>
@@ -70,6 +86,7 @@
             <div class="container">
                 <h4><b>Blue Circle</b></h4>
                 <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
             </div>
         </section>
         <section class="itemCard">
@@ -77,6 +94,7 @@
             <div class="container">
                 <h4><b>Blue Circle</b></h4>
                 <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
             </div>
         </section>
         <section class="itemCard">
@@ -84,6 +102,33 @@
             <div class="container">
                 <h4><b>Blue Circle</b></h4>
                 <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="itemCard">
+            <img src="Mobilebutton2.png">
+            <div class="container">
+                <h4><b>Blue Circle</b></h4>
+                <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
+            </div>
+        </section>
+        <section class="itemCard">
+            <img src="Mobilebutton2.png">
+            <div class="container">
+                <h4><b>Blue Circle</b></h4>
+                <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
+            </div>
+        </section>
+        <section class="itemCard">
+            <img src="Mobilebutton2.png">
+            <div class="container">
+                <h4><b>Blue Circle</b></h4>
+                <h5>$20.00</h5>
+                <button onclick="addtoCart(item1)">Add to Cart</button>
             </div>
         </section>
     </div>
