@@ -1,0 +1,26 @@
+
+body{
+    background-color: dodgerblue;
+}
+
+h1{
+    display: inline;
+}
+
+.itemCard {
+    background-color: aquamarine;
+    margin-left: 120px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-shadow: 30px 12px 80px 10px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+}
+
+.itemCard:hover {
+    box-shadow: 0 8px 12px 4px rgba(0,0,0,0.4);
+}
+
+.container {
+    padding: 2px 16px;
+}
