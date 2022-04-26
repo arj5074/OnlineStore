@@ -13,6 +13,7 @@
         let loginOpen = false;
         let itemsInCart = [];
         let currentTotal = 0;
+        let users = [];
         let itemPrice = [
             {
                 "Name":"Lion King 2",
@@ -56,9 +57,29 @@
                 "Price":19.99
             },
             {
-                "Name":"Dog",
-                "Price":5
+                "Name":"Lion King 2(Blue Ray - Spanish)",
+                "Price":6.99
             },
+            {
+                "Name":"Lion King 2(Blue Ray - Russian)",
+                "Price":6.99
+            },
+            {
+                "Name":"Lion King 2(Blue Ray - Korean)",
+                "Price":6.99
+            },
+            {
+                "Name":"Lion King 1 1/2 (Spanish)",
+                "Price":4.99
+            },
+            {
+                "Name":"Lion King 1 1/2 (Russian)",
+                "Price":4.99
+            },
+            {
+                "Name":"Lion King 1 1/2 (Korean)",
+                "Price":4.99
+            }
         ];
 
         function addtoCart(value){
@@ -66,6 +87,21 @@
             openCheckout();
             openCheckout();
         }
+
+        function blueRaytoCart(){
+            let blue = document.getElementById('blueray')
+            itemsInCart.push( itemPrice[parseInt(blue.options[blue.selectedIndex].value)]);
+            openCheckout();
+            openCheckout();
+        }
+
+        function oneHalftoCart(){
+            let half = document.getElementById('oneAndHalf')
+            itemsInCart.push( itemPrice[parseInt(half.options[half.selectedIndex].value)]);
+            openCheckout();
+            openCheckout();
+        }
+
 
         function openCheckout(){
             if (cartOpen){
@@ -102,19 +138,49 @@
             }
             else {
                 loginOpen = true
-                document.getElementById('loginWindow').innerHTML = "<label for=\"usr\" >Username:</label>\n" +
-                    "                <input id=\"usr\">\n" +
-                    "                <label for=\"pwd\" >Password:</label>\n" +
-                    "                <input type=\"password\" id=\"pwd\">\n" +
-                    "                <button>\n" +
+                document.getElementById('loginWindow').innerHTML = "<label for=\"usr\" >Username:</label><br>\n" +
+                    "                <input id=\"usr\" name=\"usr\"><br>\n" +
+                    "                <label for=\"pwd\" >Password:</label><br>\n" +
+                    "                <input type=\"password\" id=\"pwd\" name=\"pwd\"><br><br>\n" +
+                    "                <div className=\"form-check\">\n" +
+                    "                    <input className=\"form-check-input\" type=\"checkbox\" name=\"robotCheck\" id=\"robotCheck\" >\n" +
+                    "                     <label className=\"form-check-label\" htmlFor=\"robotCheck\">Not a Robot</label>\n" +
+                    "                </div>" +
+                    "                <button onclick='validateLogin()'>\n" +
                     "                    Login\n" +
                     "                </button>\n" +
-                    "                <button>\n" +
+                    "                <button onclick='validateNewAccount()'>\n" +
                     "                    Create Account\n" +
                     "                </button>"
             }
         }
 
+        function validateLogin(){
+            let newName = document.forms["loginWindow"]["usr"].value
+            let newPass = document.forms["loginWindow"]["pwd"].value
+            if (newName == "" || newPass == ""){
+                alert("Please enter both username and password")
+            }
+            else {
+                if (document.forms["loginWindow"]["robotCheck"].checked) {
+                    console.log(users[0][0])
+                } else {
+                    alert("Please check that you are not a robot")
+                }
+            }
+        }
+        function validateNewAccount(){
+            let newName = document.forms["loginWindow"]["usr"].value
+            let newPass = document.forms["loginWindow"]["pwd"].value
+            if (newName == "" || newPass == ""){
+                alert("Please enter both username and password")
+            }
+            else {
+                users.push(newName,  newPass)
+                console.log(users[0][0])
+            }
+            console.log(users[0][0])
+        }
 
 
     </script>
@@ -127,7 +193,7 @@
             </button>
         </div>
         <div class="row" >
-            <form class="col-md-2" method="post" id="loginWindow" style="background-color: whitesmoke">
+            <form class="col-md-2" name="loginWindow" id="loginWindow" style="background-color: whitesmoke">
 
             </form>
         </div>
@@ -141,7 +207,7 @@
 
             </table>
         </div>
-        <form action="www.google.com" method="post">
+        <form method="post">
             <div class="row" id="checkoutButton">
 
             </div>
@@ -158,6 +224,11 @@
                 <div>
                     <h2><em>We're Making a Comeback!</em></h2>
                 </div>
+            </section>
+            <section class="col-md-1">
+            </section>
+            <section class="itemCard col-md-2">
+                <img src="images/logofinal.png" >
             </section>
         </div>
     </div>
@@ -176,6 +247,7 @@
                 <h4><b>Lion King 2</b></h4>
                 <h5>$5.99</h5>
                 <button onclick="addtoCart(itemPrice[0])">Add to Cart</button>
+                <p>The Lion King II: Simba's Pride is a 1998 American animated direct-to-video musical romantic drama film. It is the sequel to Disney's 1994 animated feature film, The Lion King, with its plot influenced by William Shakespeare's Romeo and Juliet, and the second installment in The Lion King trilogy.</p>
             </div>
         </section>
         <section class="col-md-1"></section>
@@ -185,6 +257,7 @@
                 <h4><b>Lion King 2(French)</b></h4>
                 <h5>$5.99</h5>
                 <button onclick="addtoCart(itemPrice[1])">Add to Cart</button>
+                <p>Le Roi Lion II : La Fierté de Simba (The Lion King II: Simba's Pride) est un film d'animation américain réalisé par 1998. C'est la suite du long métrage d'animation de Disney de 1994, Le Roi Lion, avec son intrigue influencée par Roméo et Juliette de William Shakespeare, et le deuxième volet de la trilogie Le Roi Lion.</p>
             </div>
         </section>
         <section class="col-md-1"></section>
@@ -194,6 +267,7 @@
                 <h4><b>Lion King 2(Portugese)</b></h4>
                 <h5>$5.99</h5>
                 <button onclick="addtoCart(itemPrice[2])">Add to Cart</button>
+                <p>O Rei Leão II: O Orgulho de Simba é um filme estadião de 1998. É a sequência do longa-metragem animado da Disney de 1994, O Rei Leão, com sua trama influenciada por Romeu e Julieta, de William Shakespeare, e a segunda parte da trilogia O Rei Leão.</p>
             </div>
         </section>
     </div>
@@ -209,6 +283,7 @@
                 <h4><b>Lion King 2(VHS)</b></h4>
                 <h5>$2.99</h5>
                 <button onclick="addtoCart(itemPrice[3])">Add to Cart</button>
+                <p>The Lion King II: Simba's Pride is a 1998 American animated direct-to-video musical romantic drama film. It is the sequel to Disney's 1994 animated feature film, The Lion King, with its plot influenced by William Shakespeare's Romeo and Juliet, and the second installment in The Lion King trilogy.</p>
             </div>
         </section>
         <section class="col-md-1"></section>
@@ -218,6 +293,7 @@
                 <h4><b>Hercules</b></h4>
                 <h5>$9.99</h5>
                 <button onclick="addtoCart(itemPrice[4])">Add to Cart</button>
+                <p>Hercules is a 1997 American animated musical fantasy comedy film produced by Walt Disney Feature Animation for Walt Disney Pictures. The 35th Disney animated feature film and the eighth animated film produced during the Disney Renaissance, the film was directed by Ron Clements and John Musker.</p>
             </div>
         </section>
         <section class="col-md-1"></section>
@@ -226,7 +302,14 @@
             <div class="container">
                 <h4><b>Lion King 1 1/2</b></h4>
                 <h5>$4.99</h5>
-                <button onclick="addtoCart(itemPrice[5])">Add to Cart</button>
+                <button onclick="oneHalftoCart()">Add to Cart</button>
+                <select class="form-select" id="oneAndHalf">
+                    <option selected value=5>English</option>
+                    <option value=13>Spanish</option>
+                    <option value=14>Russian</option>
+                    <option value=15>Korean</option>
+                </select>
+                <p>The Lion King 1½ is a 2004 American animated direct-to-video musical comedy film produced by the Australian branch of DisneyToon Studios and released direct to video on February 10, 2004.</p>
             </div>
         </section>
     </div>
@@ -242,6 +325,7 @@
                 <h4><b>Lion King(Live Action)</b></h4>
                 <h5>$7.99</h5>
                 <button onclick="addtoCart(itemPrice[6])">Add to Cart</button>
+                <p>The Lion King is a 2019 American computer-animated musical drama film directed and produced by Jon Favreau, written by Jeff Nathanson, and produced by Walt Disney Pictures and Fairview Entertainment. It is a photorealistic remake of Disney's traditionally animated 1994 film of the same name.</p>
             </div>
         </section>
         <section class="col-md-1"></section>
@@ -250,7 +334,14 @@
             <div class="container">
                 <h4><b>Lion King 2(Blue Ray)</b></h4>
                 <h5>$6.99</h5>
-                <button onclick="addtoCart(itemPrice[7])">Add to Cart</button>
+                <button onclick="blueRaytoCart()">Add to Cart</button>
+                <select class="form-select" id="blueray">
+                    <option selected value=7>English</option>
+                    <option value=10>Spanish</option>
+                    <option value=11>Russian</option>
+                    <option value=12>Korean</option>
+                </select>
+                <p>The Lion King II: Simba's Pride is a 1998 American animated direct-to-video musical romantic drama film. It is the sequel to Disney's 1994 animated feature film, The Lion King, with its plot influenced by William Shakespeare's Romeo and Juliet, and the second installment in The Lion King trilogy.</p>
             </div>
         </section>
         <section class="col-md-1"></section>
@@ -260,6 +351,7 @@
                 <h4><b>Lion King (Video Game)</b></h4>
                 <h5>$49.99</h5>
                 <button onclick="addtoCart(itemPrice[8])">Add to Cart</button>
+                <p>The Lion King is a platform game based on Disney's animated film of the same name. The game was developed by Westwood Studios and published by Virgin Interactive Entertainment for the Super NES and Genesis in 1994, and was also ported to MS-DOS, Amiga, Game Gear, Master System, and Nintendo Entertainment System</p>
             </div>
         </section>
     </div>
@@ -275,6 +367,7 @@
                 <h4><b>Lion King</b></h4><h4 style="color: red"><b>(Sold Out)</b></h4>
                 <h5>$19.99</h5>
                 <button onclick="addtoCart(itemPrice[9])" disabled>Add to Cart</button>
+                <p>The Lion King is a 1994 American animated musical drama film produced by Walt Disney Feature Animation and released by Walt Disney Pictures. It is the 32nd Disney animated feature film and the fifth animated film produced during a period known as the Disney Renaissance.</p>
             </div>
         </section>
     </div>
