@@ -9,130 +9,275 @@
 </head>
 <body>
     <script type="text/javascript">
-        var item1 = 'turtle';
-        var itemsInCart = [];
+        let cartOpen = false;
+        let loginOpen = false;
+        let itemsInCart = [];
+        let currentTotal = 0;
+        let itemPrice = [
+            {
+                "Name":"Lion King 2",
+                "Price":5.99
+            },
+            {
+                "Name":"Lion King 2(French)",
+                "Price":5.99
+            },
+            {
+                "Name":"Lion King 2(Portugese)",
+                "Price":5.99
+            },
+            {
+                "Name":"Lion King 2(VHS)",
+                "Price":2.99
+            },
+            {
+                "Name":"Hercules",
+                "Price":9.99
+            },
+            {
+                "Name":"Lion King 1 1/2",
+                "Price":4.99
+            },
+
+            {
+                "Name":"Lion King(Live Action)",
+                "Price":7.99
+            },
+            {
+                "Name":"Lion King 2(Blue Ray)",
+                "Price":6.99
+            },
+            {
+                "Name":"Lion King(Video Game)",
+                "Price":49.99
+            },
+            {
+                "Name":"Lion King(Sold Out)",
+                "Price":19.99
+            },
+            {
+                "Name":"Dog",
+                "Price":5
+            },
+        ];
 
         function addtoCart(value){
             itemsInCart.push(value);
-            console.log(itemsInCart);
+            openCheckout();
+            openCheckout();
         }
+
         function openCheckout(){
-            console.log(itemsInCart);
-        }
-
-        function closeCheckout() {
-
+            if (cartOpen){
+                cartOpen=false
+                document.getElementById('checkoutTable').innerHTML = ""
+                document.getElementById('checkoutButton').innerHTML = ""
+            }
+            else {
+                cartOpen = true
+                let tr = ""
+                let totalCost = 0
+                for (item in itemsInCart){
+                    tr += "<tr><td>"+ itemsInCart[item].Name +"</td><td>" + itemsInCart[item].Price +"</td></tr>"
+                    totalCost+=itemsInCart[item].Price;
+                }
+                currentTotal = totalCost.toPrecision(4)
+                document.getElementById('checkoutTable').innerHTML = "<thead><tr><th>Item</th><th>Price</th></tr></thead><tbody>" + tr +"</tbody><thead><tr><th>Total</th><th>"+currentTotal+"</th></tr></thead>"
+                document.getElementById('checkoutButton').innerHTML = "<button class=\"col-md-1\" style='background-color: blue; color: white' onclick='completeCheckout()'><b>Purchase</b></button>"
+            }
         }
 
         function completeCheckout() {
-
+            cartOpen=false
+            document.getElementById('checkoutTable').innerHTML = ""
+            document.getElementById('checkoutButton').innerHTML = ""
+            alert("Your payment of $" + currentTotal + " has been processed.")
+            itemsInCart=[]
         }
 
-
-
+        function openLogin(){
+            if (loginOpen) {
+                loginOpen = false
+                document.getElementById('loginWindow').innerHTML = ""
+            }
+            else {
+                loginOpen = true
+                document.getElementById('loginWindow').innerHTML = "<label for=\"usr\" >Username:</label>\n" +
+                    "                <input id=\"usr\">\n" +
+                    "                <label for=\"pwd\" >Password:</label>\n" +
+                    "                <input type=\"password\" id=\"pwd\">\n" +
+                    "                <button>\n" +
+                    "                    Login\n" +
+                    "                </button>\n" +
+                    "                <button>\n" +
+                    "                    Create Account\n" +
+                    "                </button>"
+            }
+        }
 
 
 
     </script>
 
-    <div class="title">
-        <h1>Big Title</h1>
+
+    <div class="container-fluid" style="position: fixed">
+        <div class="row">
+            <button class="col-md-1" onclick="openLogin()" >
+                <i class="fa fa-sign-in fa-2x"> Login</i>
+            </button>
+        </div>
+        <div class="row" >
+            <form class="col-md-2" method="post" id="loginWindow" style="background-color: whitesmoke">
+
+            </form>
+        </div>
+        <div class="row">
+            <button class="col-md-1" onclick="openCheckout()">
+                <i class="fa fa-shopping-cart fa-2x"> Cart</i>
+            </button>
+        </div>
+        <div class="row">
+            <table class="col-md-2" id="checkoutTable" style="border: 1px solid black;background-color: whitesmoke">
+
+            </table>
+        </div>
+        <form action="www.google.com" method="post">
+            <div class="row" id="checkoutButton">
+
+            </div>
+        </form>
+
     </div>
-    <div class="title">
-        <h2>Small Title</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <section class="col-md-4"></section>
+            <section class="col-md-4 title">
+                <div>
+                    <h1><b>Bootleg Lion King DVDs</b></h1>
+                </div>
+                <div>
+                    <h2><em>We're Making a Comeback!</em></h2>
+                </div>
+            </section>
+        </div>
     </div>
-    <div>
-        <button class="fa fa-pull-right">
-            <i class="fa fa-sign-in fa-2x"> Login</i>
-        </button>
-        <br>
-        <br>
-        <button onclick="openCheckout()" class="fa fa-pull-right">
-            <i class="fa fa-shopping-cart fa-2x"> Cart</i>
-        </button>
-    </div>
+
+
+    <br>
+    <br>
     <br>
     <br>
 
     <div class="row">
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/lionking2.jpg">
             <div class="container">
-                <h4><b>Blue Circle</b></h4>
+                <h4><b>Lion King 2</b></h4>
+                <h5>$5.99</h5>
+                <button onclick="addtoCart(itemPrice[0])">Add to Cart</button>
+            </div>
+        </section>
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/lk2french.jpg">
+            <div class="container">
+                <h4><b>Lion King 2(French)</b></h4>
+                <h5>$5.99</h5>
+                <button onclick="addtoCart(itemPrice[1])">Add to Cart</button>
+            </div>
+        </section>
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/lk2portugese.jpg">
+            <div class="container">
+                <h4><b>Lion King 2(Portugese)</b></h4>
+                <h5>$5.99</h5>
+                <button onclick="addtoCart(itemPrice[2])">Add to Cart</button>
+            </div>
+        </section>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/vhs.jpg">
+            <div class="container">
+                <h4><b>Lion King 2(VHS)</b></h4>
+                <h5>$2.99</h5>
+                <button onclick="addtoCart(itemPrice[3])">Add to Cart</button>
+            </div>
+        </section>
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/hercules.jpg">
+            <div class="container">
+                <h4><b>Hercules</b></h4>
+                <h5>$9.99</h5>
+                <button onclick="addtoCart(itemPrice[4])">Add to Cart</button>
+            </div>
+        </section>
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/lionkinghalf.jpg">
+            <div class="container">
+                <h4><b>Lion King 1 1/2</b></h4>
+                <h5>$4.99</h5>
+                <button onclick="addtoCart(itemPrice[5])">Add to Cart</button>
+            </div>
+        </section>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/newlion.jpg">
+            <div class="container">
+                <h4><b>Lion King(Live Action)</b></h4>
+                <h5>$7.99</h5>
+                <button onclick="addtoCart(itemPrice[6])">Add to Cart</button>
+            </div>
+        </section>
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/lionking2blue.jpg">
+            <div class="container">
+                <h4><b>Lion King 2(Blue Ray)</b></h4>
+                <h5>$6.99</h5>
+                <button onclick="addtoCart(itemPrice[7])">Add to Cart</button>
+            </div>
+        </section>
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/game.jpg">
+            <div class="container">
+                <h4><b>Lion King (Video Game)</b></h4>
+                <h5>$49.99</h5>
+                <button onclick="addtoCart(itemPrice[8])">Add to Cart</button>
+            </div>
+        </section>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <section class="col-md-1"></section>
+        <section class="itemCard col-md-3">
+            <img src="images/original.jpg">
+            <div class="container">
+                <h4><b>Lion King</b></h4><h4 style="color: red"><b>(Sold Out)</b></h4>
                 <h5>$19.99</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart('seven')">Add to Cart</button>
-            </div>
-        </section>
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
+                <button onclick="addtoCart(itemPrice[9])" disabled>Add to Cart</button>
             </div>
         </section>
     </div>
-    <div class="row">
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-    </div>
-    <div class="row">
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-        <section class="itemCard">
-            <img src=".idea/Mobilebutton2.png">
-            <div class="container">
-                <h4><b>Blue Circle</b></h4>
-                <h5>$20.00</h5>
-                <button onclick="addtoCart(item1)">Add to Cart</button>
-            </div>
-        </section>
-    </div>
-
 
 </body>
 </html>
